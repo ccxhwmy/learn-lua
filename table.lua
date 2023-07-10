@@ -77,10 +77,39 @@ local function str2tbl()
     end
 end
 
+local function insert_tail(tab, ...)
+    local idx = #tab
+    for i = 1, select('#', ...) do
+        idx = idx + 1
+        tab[idx] = select(i, ...)
+    end
+
+    return idx
+end
+
+local function test_insert_tail()
+    print(insert_tail({1, 2, 3}, 4, 5))
+end
+
+local function test_nkeys()
+    local nkeys        = require("table.nkeys")
+    local tb_tmp = {
+        1,
+        "2",
+        ["3"] = 4,
+        ["a"] = "b",
+        5
+    }
+
+    print(nkeys(tb_tmp))
+end
+
 -- change_val()
 -- concat()
 -- insert()
 -- key_with_dot()
 -- cal_tb_len()
 -- test_next()
-str2tbl()
+-- str2tbl()
+-- test_insert_tail()
+test_nkeys()
