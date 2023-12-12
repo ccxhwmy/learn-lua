@@ -242,7 +242,18 @@ local function test_merge()
     end
 end
 
+local function tbl_key_is_nil()
+    local str_test = "{\"\": \"bbb\"}"
+    local res = dkjson.decode(str_test)
+    if type(res) == "table" then
+        for k, v in pairs(res) do
+            print("k: ", k, ", v: ", v)
+        end
+    end
+end
 
+
+tbl_key_is_nil()
 -- change_val()
 -- concat()
 -- insert()
@@ -251,7 +262,7 @@ end
 -- test_next()
 -- str2tbl()
 -- test_insert_tail()
-test_nkeys()
+-- test_nkeys()
 -- test_pairs()
 -- test_deepcopy()
 -- test_merge()
