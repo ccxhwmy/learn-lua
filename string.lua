@@ -143,6 +143,9 @@ local function sub()
 
     local first_sub = string.sub(sourcestr, 4)
     print("\nfirst_sub is", string.format("%q", first_sub))
+
+    sourcestr = "123"
+    print(sourcestr, ": ", #string.sub(sourcestr, 2, 7))
 end
 
 -- test_byte()
