@@ -240,6 +240,25 @@ local function test_merge()
     for k, v in pairs(merge(tb_tmp_01, tb_tmp_02)) do
         print("k: ", type(k), ", v: ", dkjson.encode(v))
     end
+
+    local tbl_tmp1 = {
+        ["aaa"] = {
+            "bbb",
+            "ccc",
+            "ddd"
+        }
+    }
+
+    local tbl_tmp2 = {
+        ["aaa"] = {
+            "eee",
+            "fff",
+            "ggg"
+        }
+    }
+
+    local res = merge(tbl_tmp1, tbl_tmp2)
+    print("res: ", dkjson.encode(res))
 end
 
 local function tbl_key_is_nil()
@@ -251,7 +270,6 @@ local function tbl_key_is_nil()
         end
     end
 end
-
 
 local function test_remove()
     local tbl_tmp = {
@@ -287,7 +305,21 @@ local function test_remove()
     end
 
     print("after remove: ", dkjson.encode(tbl_tmp))
+
+    local tbl_tmp2 = {
+        ["a"] = "a",
+        ["b"] = "b",
+        ["c"] = "c",
+        ["d"] = "d"
+    }
+
+    print("before nil: ", dkjson.encode(tbl_tmp2))
+
+    tbl_tmp2["a"] = nil
+
+    print("after  nil: ", dkjson.encode(tbl_tmp2))
 end
+
 
 
 -- tbl_key_is_nil()
