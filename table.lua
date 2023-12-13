@@ -253,7 +253,44 @@ local function tbl_key_is_nil()
 end
 
 
-tbl_key_is_nil()
+local function test_remove()
+    local tbl_tmp = {
+        {"1", "1", "1", "1"},
+        {"2", "2", "2", "2"},
+        {"3", "3", "3", "3"},
+        {"4", "4", "4", "4"},
+    }
+
+    local find_str = function (tbl_conf)
+        if tbl_conf[1] == "2" or tbl_conf[1] == "3" then
+            return true
+        else
+            return false
+        end
+    end
+
+    print("before remove: ", dkjson.encode(tbl_tmp))
+
+    local i = 1
+    while tbl_tmp[i] do
+        if find_str(tbl_tmp[i]) then
+            table.remove(tbl_tmp, i)
+        else
+            i = i + 1
+        end
+    end
+
+    print("after remove: ", dkjson.encode(tbl_tmp))
+
+    for k, v in pairs(tbl_tmp) do
+        print("k: ", k, ", v: ", dkjson.encode(v))
+    end
+
+    print("after remove: ", dkjson.encode(tbl_tmp))
+end
+
+
+-- tbl_key_is_nil()
 -- change_val()
 -- concat()
 -- insert()
@@ -266,3 +303,4 @@ tbl_key_is_nil()
 -- test_pairs()
 -- test_deepcopy()
 -- test_merge()
+test_remove()
